@@ -1,0 +1,18 @@
+body {
+  padding-top:20px;
+  word-wrap:break-word; 
+}
+
+      
+.col-centered {
+    display:inline-block;
+    float:none;
+    /* reset the text-align */
+    text-align:left;
+    /* inline-block space fix */
+    margin-right:-4px;
+}
+
+.row-centered {
+    text-align:center;
+}
