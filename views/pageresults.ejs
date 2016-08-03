@@ -33,48 +33,16 @@
       <div class="col-md-10 col-sm-10 col-xs-12 col-centered">
 
         <div class="entry input-group">
-
-
-          <input class="form-control" id="key" name="key" type="text" placeholder="Passphrase or key">
+          <input class="form-control" id="key" name="key" type="text" placeholder="Enter creator ID">
           <span class="input-group-btn">
-              <button id="decryptbtn" name="decryptbtn" class="btn btn-primary btn-add" type="button"><span class="fa fa-unlock"></span> Decrypt page</button>
+              <button id="decryptbtn" name="decryptbtn" class="btn btn-primary btn-add" type="button"><span class="fa fa-search"></span> Search</button>
           </span>
         </div>
 
+        <% for(var i=0; i < pages.length; i++) {%>
+        
+        <% } %>
 
-        <div class="form-group ">
-          <input class="form-control" id="datafromserver" name="datafromserver" type="hidden" value="<%= page_data.encryptedtext %>" />
-        </div>
-
-        <% if(page_data.creator_id !== "") {%>
-          <div class="bs-callout bs-callout-info" id="callout-navs-tabs-plugin">
-            <p>Your creator ID (this will only be shown once for this page):
-              <%= page_data.creator_id %>
-            </p>
-          </div>
-          <% }%>
-
-
-            <% if(page_data.has_cleartext) {%>
-              <div class="bs-callout bs-callout-info" id="callout-navs-tabs-plugin">
-                <h4>Clear text</h4>
-                <hr>
-                <p>
-                  <%= page_data.cleartext %>
-                </p>
-              </div>
-              <% }%>
-
-
-                <% if(page_data.has_encryptedtext) {%>
-                  <div class="bs-callout bs-callout-danger" id="callout-navs-tabs-plugin">
-                    <h4>Encrypted text</h4>
-                    <hr>
-                    <div id="pagetext">
-
-                    </div>
-                  </div>
-                  <% }%>
 
       </div>
     </div>

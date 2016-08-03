@@ -3,6 +3,26 @@ var request = require('request');
 var Page = require('../models/page');
 
 
+exports.getPagesForCreatorID = function(req, res) {
+	var creator_id = req.params.creator_id;
+	var criteria = {
+		creator_id: creator_id
+	};  
+	
+
+	Page.find(criteria, function(err, pages) {
+		if (!pages || err) {}
+
+		res.render('pageresults.ejs', {
+			pages:pages
+		});
+
+
+	});
+
+}
+
+
 exports.getPage = function(req, res) {
 	var page_id = req.params.page_id;
 	var criteria = {};
@@ -38,7 +58,7 @@ exports.getPage = function(req, res) {
 			if (page.viewed === false) {
 				page.viewed = true;
 				page.save(function(err, page) {
-					if(!err)
+					if (!err)
 						res.render('page.ejs', {
 							page_data
 						});
@@ -107,7 +127,6 @@ exports.addNewPage = function(req, res) {
 					if (err)
 						console.log(err);
 					else {
-						console.log("saved");
 						res.json({
 							status: 0,
 							redirect: newPage.shorturl,
