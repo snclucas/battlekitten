@@ -1,1 +1,1 @@
-Battlekitten - your private pages
+Battlekitten.com - your private pages
