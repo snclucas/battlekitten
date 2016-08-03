@@ -30,6 +30,11 @@ var PageSchema = new Schema({
 		required: false,
 		default: false,
 	},
+	encrypted_token: {
+		type: String,
+		required: false,
+		default: "Can you see this?",
+	},
 	tags: [{
 		text: {
 			type: String

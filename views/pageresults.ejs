@@ -2,12 +2,12 @@
 <html>
 
 <head>
-  <title>battlekitten | your secret page</title>
+  <title>Battlekitten | search pages </title>
   <meta name="Description" content="Battlekitten.com allows you to create secret, encrypted pages using markdown.">
   <meta name="Keywords" content="encrypted pages, markdown">
 
-  <meta property="og:title" content="BattleKitten | your secret page">
-  <meta property="og:site_name" content="BattleKitten">
+  <meta property="og:title" content="Battlekitten | your secret page">
+  <meta property="og:site_name" content="Battlekitten">
   <meta property="og:url" content="battlekitten.com">
   <meta property="og:description" content="Battlekitten.com allows you to create secret, encrypted pages using markdown.">
   <meta property="og:type" content="website">
@@ -21,9 +21,9 @@
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
 
-  <link rel="stylesheet" href="../css/vendor/docs.min.css">
+  <link rel="stylesheet" href="../../css/vendor/docs.min.css">
 
-  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../../css/base.css">
 </head>
 
 <body onload='battle.app.init();'>
@@ -31,18 +31,26 @@
   <div class="container">
     <div class="row row-centered">
       <div class="col-md-10 col-sm-10 col-xs-12 col-centered">
+        <a href="/" class="btn btn-default btn-md text-center">Home</a>
+        <a href="/pages/add" class="btn btn-default btn-md text-center">Add</a>
+        <hr>
+        <form method="POST" action="/pages/search">
+          <div class="entry input-group">
+            <input class="form-control" id="creator_id" name="creator_id" type="text" placeholder="Enter creator ID">
+            <span class="input-group-btn">
+              <button id="submit" name="submit" class="btn btn-primary btn-add" type="submit"><span class="fa fa-search"></span> Search</button>
+            </span>
+          </div>
+        </form>
 
-        <div class="entry input-group">
-          <input class="form-control" id="key" name="key" type="text" placeholder="Enter creator ID">
-          <span class="input-group-btn">
-              <button id="decryptbtn" name="decryptbtn" class="btn btn-primary btn-add" type="button"><span class="fa fa-search"></span> Search</button>
-          </span>
-        </div>
-
+        <hr>
+        <h3><%= creator_id %></h3>
         <% for(var i=0; i < pages.length; i++) {%>
-        
-        <% } %>
-
+          <a href="/page/<%= pages[i].shorturl %>">
+            <%= pages[i].shorturl %>
+          </a>
+          </br>
+          <% } %>
 
       </div>
     </div>
@@ -50,13 +58,13 @@
 
 
 
-  <script src="../components/jquery/dist/jquery.js"></script>
-  <script src="../components/crypto-js/crypto-js.js"></script>
-  <script src="../components/markdown/lib/markdown.js"></script>
-  <script src="../js/crypto.js"></script>
-  <script src="../js/handlers.js"></script>
-  <script src="../js/models.js"></script>
-  <script src="../js/app.js"></script>
+  <script src="../../components/jquery/dist/jquery.js"></script>
+  <script src="../../components/crypto-js/crypto-js.js"></script>
+  <script src="../../components/markdown/lib/markdown.js"></script>
+  <script src="../../js/crypto.js"></script>
+  <script src="../../js/handlers.js"></script>
+  <script src="../../js/models.js"></script>
+  <script src="../../js/app.js"></script>
 
 
 

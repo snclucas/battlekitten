@@ -31,7 +31,10 @@
   <div class="container">
     <div class="row row-centered">
       <div class="col-md-10 col-sm-10 col-xs-12 col-centered">
-
+        <a href="/" class="btn btn-default btn-md text-center">Home</a>
+        <a href="/pages/add" class="btn btn-default btn-md text-center">Add</a>
+        <a href="/pages/search" class="btn btn-default btn-md text-center">Search</a>
+        <hr>
         <div class="entry input-group">
 
 
@@ -44,6 +47,7 @@
 
         <div class="form-group ">
           <input class="form-control" id="datafromserver" name="datafromserver" type="hidden" value="<%= page_data.encryptedtext %>" />
+          <input class="form-control" id="encrypted_token" name="encrypted_token" type="hidden" value="<%= page_data.encrypted_token %>" />
         </div>
 
         <% if(page_data.creator_id !== "") {%>

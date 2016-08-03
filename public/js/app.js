@@ -4,7 +4,6 @@ var battle = battle || {};
 (function($) {
   "use strict";
 
-
   battle.app = {
     
     init: function() {
@@ -12,22 +11,13 @@ var battle = battle || {};
       battle.app.attachHandlers();
     },
 
-
     attachHandlers: function() {
-      $('#addpagebtn').bind('click', battle.handlers.addPage);
-     // alert();
-     // $('#addpageform').submit(battle.handlers.addPage);
-     // $('#addpageform').bind('submit', battle.handlers.addPage);
-      
+      $('#addpagebtn').bind('click', battle.handlers.addPage);  
       $('#previewbtn').bind('click', battle.handlers.convertMarkdown);
       $('#encryptedtext').bind('input propertychange', battle.handlers.convertMarkdown);
-      
       $('#decryptbtn').bind('click', battle.handlers.decryptPage);
     }
 
   }
-
-
-
 
 })($);

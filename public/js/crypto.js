@@ -18,12 +18,12 @@ var battle = battle || {};
       console.log(CryptoJS.enc.Utf8.stringify(keyHex), CryptoJS.enc.Hex.stringify(keyHex));
       console.log(CryptoJS.enc.Hex.parse(CryptoJS.enc.Utf8.parse(key).toString(CryptoJS.enc.Hex)));
       // CryptoJS use CBC as the default mode, and Pkcs7 as the default padding scheme
-      var encrypted = CryptoJS.DES.encrypt(message, keyHex, {
+      var encrypted = CryptoJS.AES.encrypt(message, key, {
         mode: CryptoJS.mode.ECB,
         padding: CryptoJS.pad.Pkcs7
       });
       // decrypt encrypt result
-      var decrypted = CryptoJS.DES.decrypt(encrypted, keyHex, {
+      var decrypted = CryptoJS.AES.decrypt(encrypted, key, {
         mode: CryptoJS.mode.ECB,
         padding: CryptoJS.pad.Pkcs7
       });
@@ -54,7 +54,7 @@ var battle = battle || {};
       console.log('CryptoJS.enc.Hex.stringify(keyHex) ' + CryptoJS.enc.Hex.stringify(keyHex));
       console.log('CryptoJS.enc.Hex.parse(CryptoJS.enc.Utf8.parse(key).toString(CryptoJS.enc.Hex)) ' + CryptoJS.enc.Hex.parse(CryptoJS.enc.Utf8.parse(key).toString(CryptoJS.enc.Hex)));
       // CryptoJS use CBC as the default mode, and Pkcs7 as the default padding scheme
-      var decrypted = CryptoJS.DES.decrypt(message, keyHex, {
+      var decrypted = CryptoJS.AES.decrypt(message, key, {
         mode: CryptoJS.mode.ECB,
         padding: CryptoJS.pad.Pkcs7
       });

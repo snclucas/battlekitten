@@ -4,20 +4,17 @@ var Page = require('../models/page');
 
 
 exports.getPagesForCreatorID = function(req, res) {
-	var creator_id = req.params.creator_id;
+	var creator_id = req.body.creator_id;
 	var criteria = {
 		creator_id: creator_id
 	};  
 	
-
 	Page.find(criteria, function(err, pages) {
 		if (!pages || err) {}
-
 		res.render('pageresults.ejs', {
+			creator_id:creator_id,
 			pages:pages
 		});
-
-
 	});
 
 }
@@ -49,6 +46,7 @@ exports.getPage = function(req, res) {
 			page_data.has_encryptedtext = has_encryptedtext;
 			page_data.encryptedtext = page.encryptedtext;
 			page_data.creator_id = page.creator_id;
+			page_data.encrypted_token = page.encrypted_token;
 
 			if (page.viewed === false)
 				page_data.creator_id = page.creator_id;
@@ -93,13 +91,15 @@ exports.addNewPage = function(req, res) {
 
 		var cleartext = req.body.cleartext;
 		var encryptedtext = req.body.encryptedtext;
+		var encrypted_token = req.body.encrypted_token;
 		var creator_id = req.body.creator_id;
 		var tags = req.body.tags;
 
 		var newPage = Page({
 			cleartext: cleartext,
 			encryptedtext: encryptedtext,
-			creator_id: creator_id
+			creator_id: creator_id,
+			encrypted_token: encrypted_token
 		});
 
 		//		var hashtagData = [];
