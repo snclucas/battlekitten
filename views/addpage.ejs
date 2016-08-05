@@ -20,9 +20,14 @@
 
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+  
+  <link rel="stylesheet" href="../css/vendor/simplemde.min.css">
+  
   <link rel="stylesheet" href="../css/base.css">
 
   <script src='https://www.google.com/recaptcha/api.js'></script>
+
+  
 </head>
 
 <body onload='battle.app.init();'>
@@ -33,6 +38,7 @@
           <a href="/" class="btn btn-default btn-md text-center">Home</a>
           <a href="/pages/search" class="btn btn-default btn-md text-center">Search</a>
           <hr>
+     
           <div class="form-group ">
             <label class="control-label " for="key">Passphrase or key <strong>(do not forget, we do not save this!)</strong></label>
             <input class="form-control" id="key" name="key" placeholder="Optional" type="text" />
@@ -51,14 +57,60 @@
             <textarea class="form-control" cols="40" id="encryptedtext" name="encryptedtext" placeholder="Use markdown" rows="10"></textarea>
             <input class="form-control" id="encrypted_token" name="encrypted_token" type="hidden" />
           </div>
+          
+   
 
-          <div class="g-recaptcha" data-sitekey="6LcKhCYTAAAAABqcfIdq4FHliGR7Z1pY8UUc8HJv"></div>
+            
+         
+          <div class="form-group ">
+            <label class="control-label " for="select">
+              Expiry:
+            </label>
+            <select class="select form-control" id="expiry" name="expiry">
+              <option value="1hour" >
+                1 hour
+              </option>
+              <option value="1day">
+               1 day
+              </option>
+              <option value="never" selected>
+                Never
+              </option>
+            </select>
+          </div>
+
+          
+          <div class="form-group ">
+            <label class="control-label " for="select">
+              Go live:
+            </label>
+            <select class="select form-control" id="golive" name="golive">
+              <option value="1hour" >
+                1 hour
+              </option>
+              <option value="1day">
+               1 day
+              </option>
+              <option value="now" selected>
+                Now
+              </option>
+            </select>
+          </div>     
+            
+
+          
+
+          
+          <div style="clear:both;" class="g-recaptcha" data-sitekey="6LcKhCYTAAAAABqcfIdq4FHliGR7Z1pY8UUc8HJv"></div>
           </br>
           <div class="form-group">
             <div>
               <button id="addpagebtn" class="btn btn-primary " name="submit" type="submit">Submit</button>
             </div>
           </div>
+          
+
+          
         </form>
         <hr style="height:1px;border:none;color:#333;background-color:#333;" />
         <h3>Page preview:</h3>
@@ -71,10 +123,19 @@
   <script src="../js/vendor/jquery/jquery.form.js"></script>
   <script src="../components/crypto-js/crypto-js.js"></script>
   <script src="../components/markdown/lib/markdown.js"></script>
+  <script src="../js/vendor/simplemde/simplemde.min.js"></script>
+  
+  <script>
+    var simplemde = new SimpleMDE({ element: $("#encryptedtext")[0] });
+  </script>
+  
   <script src="../js/crypto.js"></script>
   <script src="../js/handlers.js"></script>
   <script src="../js/models.js"></script>
   <script src="../js/app.js"></script>
+  
+    
+
 
 </body>
 

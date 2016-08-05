@@ -46,6 +46,11 @@ var PageSchema = new Schema({
 		default: Date.now,
 		index: true
 	},
+	golive: {
+		type: Date,
+		required: true,
+		default: Date.now,
+	},
 	expireAt: {
 		type: Date,
 		validate: [function(v) {

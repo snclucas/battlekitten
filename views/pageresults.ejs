@@ -45,13 +45,21 @@
 
         <hr>
         <h3><%= creator_id %></h3>
-        <% for(var i=0; i < pages.length; i++) {%>
-          <a href="/page/<%= pages[i].shorturl %>">
-            <%= pages[i].shorturl %>
-          </a>
-          </br>
-          <% } %>
-
+        <% if(pages.length > 0) {%>
+          <% for(var i=0; i < pages.length; i++) {%>
+            <a href="/page/<%= pages[i].shorturl %>">
+              <% if( pages[i].cleartext !== "") {%>
+                <%= pages[i].cleartext %>
+              <% } else { %>
+                <%= pages[i].shorturl %>
+              <% } %>
+              <br> <%= pages[i].date_added %>
+            </a>
+           <br><hr>
+            <% } %>
+        <% } else { %>
+          <p>No pages found </p>
+        <% } %>
       </div>
     </div>
   </div>

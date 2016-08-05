@@ -8,9 +8,10 @@ battle.handlers = {
 		// get the form data
 		var formData = {
 			'key': $.trim($("#key").val()),
-			'encryptedtext': $.trim($("#encryptedtext").val()),
+			'encryptedtext': $.trim(simplemde.value()),
 			'cleartext': $('#cleartext').val()
 		};
+		
 		battle.models.addPage(formData);
 	},
 	
@@ -27,8 +28,17 @@ battle.handlers = {
 		var decryptedToken = battle.crypto.decrypt(encryptedToken,  $.trim(key));
 		
 		var html = 'Not decrypted!';
-		if("Can you see this?" === $.trim(decryptedToken))
+		if("Can you see this?" === $.trim(decryptedToken)) {
+			$('#encrypted-text-callout').removeClass('bs-callout-success');
+			$('#encrypted-text-callout').removeClass('bs-callout-danger');
+			$('#encrypted-text-callout').addClass('bs-callout-success');
 			html = markdown.toHTML(decryptedText);
+		}
+		else {
+			$('#encrypted-text-callout').removeClass('bs-callout-success');
+			$('#encrypted-text-callout').removeClass('bs-callout-danger');
+			$('#encrypted-text-callout').addClass('bs-callout-danger');
+		}
 
 		$("#pagetext").html(html);
 	},

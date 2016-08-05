@@ -7,13 +7,13 @@ exports.getPagesForCreatorID = function(req, res) {
 	var creator_id = req.body.creator_id;
 	var criteria = {
 		creator_id: creator_id
-	};  
-	
+	};
+
 	Page.find(criteria, function(err, pages) {
 		if (!pages || err) {}
 		res.render('pageresults.ejs', {
-			creator_id:creator_id,
-			pages:pages
+			creator_id: creator_id,
+			pages: pages
 		});
 	});
 
@@ -31,40 +31,48 @@ exports.getPage = function(req, res) {
 
 	Page.findOne(criteria, function(err, page) {
 		if (!page || err) {
-			res.json({
-				status: 0,
-				"message": 'Error finding message'
-			});
+			res.render('404.ejs');
 		} else {
-			var has_cleartext = (page.cleartext !== undefined && page.cleartext !== "");
-			var has_encryptedtext = (page.encryptedtext !== undefined && page.encryptedtext !== "")
 
-			var page_data = {};
 
-			page_data.has_cleartext = has_cleartext;
-			page_data.cleartext = page.cleartext;
-			page_data.has_encryptedtext = has_encryptedtext;
-			page_data.encryptedtext = page.encryptedtext;
-			page_data.creator_id = page.creator_id;
-			page_data.encrypted_token = page.encrypted_token;
-
-			if (page.viewed === false)
-				page_data.creator_id = page.creator_id;
-			else
-				page_data.creator_id = "";
-
-			if (page.viewed === false) {
-				page.viewed = true;
-				page.save(function(err, page) {
-					if (!err)
-						res.render('page.ejs', {
-							page_data
-						});
-				});
+			var now = new Date();
+			if (now < page.golive && page.viewed === true) {
+				res.render('404.ejs');
 			} else {
-				res.render('page.ejs', {
-					page_data
-				});
+				var has_cleartext = (page.cleartext !== undefined && page.cleartext !== "");
+				var has_encryptedtext = (page.encryptedtext !== undefined && page.encryptedtext !== "")
+
+				var page_data = {};
+
+				page_data.has_cleartext = has_cleartext;
+				page_data.cleartext = page.cleartext;
+				page_data.has_encryptedtext = has_encryptedtext;
+				page_data.encryptedtext = page.encryptedtext;
+				page_data.creator_id = page.creator_id;
+				page_data.encrypted_token = page.encrypted_token;
+				page_data.expireat = page.expireAt;
+				page_data.golive = page.golive;
+				page_data.shorturl = page.shorturl;
+
+				if (page.viewed === false)
+					page_data.creator_id = page.creator_id;
+				else
+					page_data.creator_id = "";
+
+				if (page.viewed === false) {
+					page.viewed = true;
+					page.save(function(err, page) {
+						if (!err)
+							res.render('page.ejs', {
+								page_data
+							});
+					});
+				} else {
+					res.render('page.ejs', {
+						page_data
+					});
+				}
+
 			}
 		}
 	});
@@ -93,13 +101,33 @@ exports.addNewPage = function(req, res) {
 		var encryptedtext = req.body.encryptedtext;
 		var encrypted_token = req.body.encrypted_token;
 		var creator_id = req.body.creator_id;
+		var expiry = req.body.expiry;
+		var golive = req.body.golive;
 		var tags = req.body.tags;
+
+		var expiry_date = "";
+		if (expiry === 'never')
+			expiry_date = new Date(new Date().valueOf() + 1000 * 86400 * 1000);
+		else if (expiry === '1day')
+			expiry_date = new Date(new Date().valueOf() + 1 * 86400 * 1000);
+		else
+			expiry_date = new Date(new Date().valueOf() + 3600 * 1 * 1000);
+
+		var go_live = "";
+		if (golive === 'now')
+			go_live = new Date();
+		else if (golive === '1day')
+			go_live = new Date(new Date().valueOf() + 1 * 86400 * 1000);
+		else
+			go_live = new Date(new Date().valueOf() + 3600 * 1 * 1000);
 
 		var newPage = Page({
 			cleartext: cleartext,
 			encryptedtext: encryptedtext,
 			creator_id: creator_id,
-			encrypted_token: encrypted_token
+			encrypted_token: encrypted_token,
+			expireAt: expiry_date,
+			golive: go_live
 		});
 
 		//		var hashtagData = [];
