@@ -10,6 +10,7 @@ module.exports = function(app) {
   app.get('/pages/add', pageService.addNewPage);
 
   app.get('/page/:page_id', pageService.getPage);
+  app.get('/p/:page_id', pageService.getPage);
 
   app.get('/pages/search', function(req, res) {
     res.render('pageresults.ejs', {creator_id:"", pages:[]});

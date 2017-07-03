@@ -17,6 +17,8 @@
   <meta name="twitter:site" content="@battlekittencom">
   <meta name="twitter:title" content="Battlekitten | your secret page">
   <meta name="twitter:description" content="Battlekitten.com allows you to create secret, encrypted pages using markdown.">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
@@ -54,7 +56,7 @@
           <div class="bs-callout bs-callout-info" id="creator-id-text-callout">
             <p><strong>This will only be shown once for this page:</strong></p>
             <p>Your creator ID: <%= page_data.creator_id %></p>
-            <p>Page URL: https://battlekitten.com/page/<%= page_data.shorturl %></p>
+            <p>Page URL: <a href="https://<%= page_data.baseurl %>/p/<%= page_data.shorturl %>">https://<%= page_data.baseurl %>/p/<%= page_data.shorturl %></a></p>
             <p>Page go-live: <%= page_data.golive %></p>
             <p>Page expiry: <%= page_data.expireat %></p>
           </div>

@@ -16,7 +16,6 @@ exports.getPagesForCreatorID = function(req, res) {
 			pages: pages
 		});
 	});
-
 }
 
 
@@ -53,6 +52,8 @@ exports.getPage = function(req, res) {
 				page_data.expireat = page.expireAt;
 				page_data.golive = page.golive;
 				page_data.shorturl = page.shorturl;
+				
+				page_data.baseurl = req.headers.host;
 
 				if (page.viewed === false)
 					page_data.creator_id = page.creator_id;

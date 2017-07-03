@@ -1,6 +1,10 @@
 {
-  "name": "hashtagplus",
+  "name": "battlekitten",
   "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/snclucas/battlekitten.git"
+  }
   "dependencies": {
     "async": "2.0.0-rc.3",
     "bcrypt-nodejs": "latest",
@@ -17,11 +21,12 @@
     "method-override": "1.0.2",
     "mongodb": "2.1.18",
     "mongoose": "latest",
-    "morgan": "1.0.1"
+    "morgan": "1.0.1",
     "request": "latest",
     "requirejs": "latest",
     "short-mongo-id": "latest",
     "validator": "5.2.0",
+    "passport": "latest"
   },
   "devDependencies": {
     "mocha": "2.4.5",

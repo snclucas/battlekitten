@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>hashtag+ | login</title>
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+  <link rel="stylesheet" type="text/css" href="../css/base.css" />
+
+  <style>
+    form[role=login] {
+      color: #5d5d5d;
+      background: #f2f2f2;
+      padding: 26px;
+      border-radius: 10px;
+      -moz-border-radius: 10px;
+      -webkit-border-radius: 10px;
+    }
+    
+    form[role=login] img {
+      display: block;
+      margin: 0 auto;
+      margin-bottom: 35px;
+    }
+    
+    form[role=login] input,
+    form[role=login] button {
+      font-size: 18px;
+      margin: 16px 0;
+    }
+    
+    form[role=login]> div {
+      text-align: center;
+    }
+    
+    .form-links {
+      text-align: center;
+      margin-top: 1em;
+      margin-bottom: 50px;
+    }
+    
+    .form-links a {
+      color: #fff;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="row">
+      <div class="col-md-4"></div>
+      <div class="col-md-4">
+        <section class="login-form">
+          <form method="post" action="#" role="login">
+            <img src="./img/battle-kitten.jpg" class="img-responsive" alt="" width="300px" />
+
+            <% if (message.length > 0) { %>
+              <div class="alert alert-danger">
+                <%= message %>
+              </div>
+              <% } %>
+
+                <input type="text" name="email" placeholder="Display name or email" required class="form-control input-lg" />
+                <input name="password" type="password" class="form-control input-lg" id="password" placeholder="Password" required="" />
+                <div class="pwstrength_viewport_progress"></div>
+                <button type="submit" name="go" class="btn btn-lg btn-primary btn-block">Sign in</button>
+                <div>
+                  <a href="/forgot">Reset password</a>
+                </div>
+
+          </form>
+
+        </section>
+      </div>
+
+      <div class="col-md-4"></div>
+
+
+    </div>
+  </div>
+</body>
+
+</html>
